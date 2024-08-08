@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Node.js Functions Test</title>
+    <script>
+        function submitForm1(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            var n = document.getElementById('N').value; // Get the value of the input field
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/findSummation', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('answer1').innerText = xhr.responseText;
+                }
+            };
+            xhr.send('N=' + (n)); // Send the form data
+        }
+
+        function submitForm2(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            var str = document.getElementById('string1').value; // Get the value of the input field
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/uppercaseFirstandLast', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('answer2').innerText = xhr.responseText;
+                }
+            };
+            xhr.send('string1=' + (str)); // Send the form data
+        }
+
+        function submitForm3(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            var str = document.getElementById('av_med').value; // Get the value of the input field
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/findAverageAndMedian', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('answer3').innerText = xhr.responseText;
+                }
+            };
+            xhr.send('av_med=' + (str)); // Send the form data
+        }
+
+        function submitForm4(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            var str = document.getElementById('digits').value; // Get the value of the input field
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/find4Digits', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('answer4').innerText = xhr.responseText;
+                }
+            };
+            xhr.send('digits=' + (str)); // Send the form data
+        }
+    </script>
+</head>
+<body>
+    <script src="script1.js"></script>
+    <h1>Test Node.js Functions</h1>
+    <form>
+        <label>Enter a positive integer for findSummation:</label>
+        <input id="N" name="N" type="number" min="1" value="1">
+        <button type="submit" onclick="submitForm1(event)">Submit</button>
+        <p id="answer1"></p>
+    </form><br>
+    <form>
+        <label>Enter a string:</label>
+        <input id="string1" name="string1" type="text">
+        <button type="submit" onclick="submitForm2(event)">Submit</button>
+        <p id="answer2"></p>
+    </form><br>
+    <form>
+        <label>Enter an array of numbers of the following format: #,#,#,#,# {...} :</label>
+        <input id="av_med" name="av_med" type="text">
+        <button type="submit" onclick="submitForm3(event)">Submit</button>
+        <p id="answer3"></p>
+    </form><br>
+    <form>
+        <label>Enter a string of numbers separated by spaces: ### #### # ## {...} </label>
+        <input id="digits" name="digits" type="text">
+        <button type="submit" onclick="submitForm4(event)">Submit</button>
+        <p id="answer4"></p>
+    </form><br>
+    
+</body>
+</html>
